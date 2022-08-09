@@ -14,7 +14,7 @@ import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
-
+import Link from 'next/link';
 
 
 const Home: NextPage = () => {
@@ -53,21 +53,6 @@ const Home: NextPage = () => {
 
   <body>
 
-  <header>
-  <Navbar bg="dark" variant="dark">
-    <Container  fluid className="p-3 ">
-      <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-        <Nav>
-          <Stack direction="horizontal" gap={3}>
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Produtos</Nav.Link>
-            <Nav.Link href="#pricing">Carrinho</Nav.Link>
-          </Stack>
-        </Nav>
-      </Container>
-    </Navbar>
-  </header>
-
   <Container className='col-md-6'>
     <Row fluid className="p-4">
     <Stack direction="horizontal" gap={3}>
@@ -100,9 +85,15 @@ const Home: NextPage = () => {
           alt="Second slide"
         />
 
-        <Carousel.Caption>
+        <Carousel.Caption >
+
           <h3>Legumes</h3>
+
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+          <Link passHref shallow href={`/categories/${'Legumes'}`}>
+            <a className="btn btn-primary mb-4">Confira agora!</a>
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
