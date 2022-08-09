@@ -9,7 +9,7 @@ const Header: React.FC = () => {
         <div className="container-fluid">
 
           <Link passHref shallow href={`/`}>
-            <Navbar.Brand >Hortfrut</Navbar.Brand>
+            <Navbar.Brand >Hortfruti</Navbar.Brand>
           </Link>
 
             <Nav>
