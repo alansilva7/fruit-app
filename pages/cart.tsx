@@ -8,9 +8,23 @@ import Link from 'next/link';
 const Cart: NextPage = () => {
 
   const { bag, findInBag, saveInBag, updateInBag, removeInBag } = React.useContext(BagContext)
+  {bag.map(item => (
+    <div key={item._id} className="div">
+      <button  className='btn btn-primary' onClick={() => removeInBag(item._id)} >{item.name}</button>
+      <input className='form-control' 
+        defaultValue={item.price.toString()} 
+        onChange={e => updateInBag(item._id, {
+          ...item,
+          price: Number(e.target.value),
+        })}
+      />
+    </div>
+    
+  ))} 
 
-  
+
   return (
+    
     <div className="px-4 px-md-0">
       <Head>
         <title>Cart</title>
@@ -38,10 +52,8 @@ const Cart: NextPage = () => {
         ))}
 
       </div>
-
-
     </div>
-  )
+  ) 
 }
 
 export default Cart

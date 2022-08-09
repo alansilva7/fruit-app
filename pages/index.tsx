@@ -19,8 +19,6 @@ import Link from 'next/link';
 
 const Home: NextPage = () => {
   const [data, setData] = React.useState<any[]>([])
-  const { bag, saveInBag, removeInBag, updateInBag } = React.useContext(BagContext)
-
   React.useEffect(() => {
     (async () => {
       try {
@@ -32,7 +30,7 @@ const Home: NextPage = () => {
     })()
   }, [])
 
-
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -41,46 +39,36 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-    <div>
+      <div>
       {data?.map((item) => (
         <p>{item?.name}</p>
       ))}
     </div>
       
 
-
-
-
   <body>
-
-  <Container className='col-md-6'>
-    <Row fluid className="p-4">
-    <Stack direction="horizontal" gap={3}>
-      <div>COMEÇAR PEDIDO  </div>
-      <div><Button variant="danger">ENTREGA</Button>{' '}</div>
-      <div>ou</div>
-      <div><Button variant="danger">RETIRAR NA LOJA</Button>{' '}</div>
-    </Stack>
-    </Row>
-  </Container>
 
   <Container>
       <Row>
-        <Col sm={8}> <Carousel>
+        
+        <Col sm={9} className="mt-5"> <Carousel>
       <Carousel.Item>
         <img
-          className="d-block w-100 "
+          className="d-block w-100 opacity-75"
           src="https://live.staticflickr.com/8792/28207597872_4f3b4d4005_b.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
           <h3>Frutas</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <Link passHref shallow href={`/categories/${'Frutas'}`}>
+            <a className="btn btn-success mb-4">Confira agora!</a>
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
+          className="d-block w-100 opacity-75"
           src="https://www.sindcontsp.org.br/wp-content/uploads/2022/05/20140530por-ramiro-furquim-_oaf1186.jpg"
           alt="Second slide"
         />
@@ -92,13 +80,13 @@ const Home: NextPage = () => {
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
           <Link passHref shallow href={`/categories/${'Legumes'}`}>
-            <a className="btn btn-primary mb-4">Confira agora!</a>
+            <a className="btn btn-success mb-4">Confira agora!</a>
           </Link>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
+          className="d-block w-100 opacity-75"
           src="https://imagens.mfrural.com.br/mfrural-produtos-us/337934-339321-1852220-verduras-nobre.jpg"
           alt="Third slide"
         />
@@ -108,60 +96,46 @@ const Home: NextPage = () => {
           <p>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur.
           </p>
+          <Link passHref shallow href={`/categories/${'Verduras'}`}>
+            <a className="btn btn-success mb-4">Confira agora!</a>
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
 
       
       
-    </Carousel></Col>
-        <Col sm={4}>
-          <Card style={{ width: '14rem' }}>
-            <Card.Img src="https://media-exp1.licdn.com/dms/image/C4D22AQGh6PT-3-ibHw/feedshare-shrink_800/0/1657724236759?e=1662595200&v=beta&t=k6EAZQCCl6GEYdgpM44kRQ4B7w12ZaFtKnKDv_ikmWM"/>
-          </Card> 
+    </Carousel>
+    </Col>
+        <Col sm={3} className="mt-5">
+        <div className="card rounded-0 border-0">
+        <img src="https://www.designi.com.br/images/preview/10003522.jpg" className="card-img-top rounded-0" alt="..."/>
 
-          <Card className='mt-4' style={{ width: '14rem' }}>
-            <Card.Img src="https://st.depositphotos.com/1755345/54065/i/600/depositphotos_540655824-stock-photo-hortifruti-banner-or-poster-for.jpg"/>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+        <div className="card mt-4 rounded-0 pt-2 border-0">
+        <img src="https://www.designi.com.br/images/preview/10003592.jpg" className="card-img-top rounded-0" alt="..."/>
+
+        </div>
+      </Col>
+      
+        <div className="card border-0 mt-3">
+        <div className="card-body d-flex justify-content-center">
+      <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+    </Row>
+  </Container>
 
 <footer>
-  <Nav className="justify-content-center mt-4" >
-      <Nav.Item >
-        <Nav.Link href="/home">Politica de Privacidade</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-1">Fale Conosco</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link eventKey="link-2">Termos de Uso</Nav.Link>
-      </Nav.Item>
-    </Nav>
+  <div className="bg-success  text-white">
+    <Nav className="justify-content-center mt-4" >
+        <p className='mt-3'>NOVO JEITO DE FAZER FEIRA</p>
+      </Nav>
+  </div>
 </footer>
 
 
 </body>
 
-      {/* <h1>{bag.length}</h1>
-
-
-        <button className='btn btn-primary' onClick={() => saveInBag({ _id: Math.random().toString(), price: 12, name: 'remove' })}>add product</button>
-
-        <h1>bag</h1>
-
-        {bag.map(item => (
-          <div key={item._id} className="div">
-            <button  className='btn btn-primary' onClick={() => removeInBag(item._id)} >{item.name}</button>
-            <input className='form-control' 
-              defaultValue={item.price.toString()} 
-              onChange={e => updateInBag(item._id, {
-                ...item,
-                price: Number(e.target.value),
-              })}
-            />
-          </div>
-        ))} */}
     </div>
   )
 }
